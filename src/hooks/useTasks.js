@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react"
 import { firebase } from "../firebase"
-import { format } from "date-fns"
+import { differenceInDays, format } from "date-fns"
 import { collatedTasksExist } from "helpers"
 
 export const useTasks = selectedProject => {
-	const [tasks, setTasks] = useSTate([])
+	const [tasks, setTasks] = useState([])
+	const [archivedTasks, setArchivedTasks] = useState([])
 
 	useEffect(() => {
 		let unsubscribe = firebase
@@ -12,7 +13,10 @@ export const useTasks = selectedProject => {
 			.collection("tasks")
 			.where("userId", "==", "6odc6yfvOFFy7ioPnb1V")
 
-		if (unsubscribe == selectedProject && !collatedTasksExist(selectedProject)) {
+		if (
+			unsubscribe == selectedProject &&
+			!collatedTasksExist(selectedProject)
+		) {
 			unsubscribe = unsubscribe.where("projectId", "==", selectedProject)
 		} else if (selectedProject === "TODAY") {
 			unsubscribe = unsubscribe.where(
@@ -22,7 +26,27 @@ export const useTasks = selectedProject => {
 			)
 		} else if (selectedProject == "INBOX" || selectedProject === 0) {
 			unsubscribe = unsubscribe.where("date", "==", "")
-    }
-    return unsubscribe
-	}, [])
+		}
+
+		unsubscribe = unsubscribe.onSnapshot(snapshot => {
+			const newTasks = snapshot.docs.map(task => ({
+				id: task.id,
+				...task.data()
+			}))
+
+			if (setTasks(selectedProject === "NEXT_7")) {
+				newTasks.filter(
+					task => differenceInDays(task.date, new Date()) <= 7 && !task.archived
+				)
+			} else {
+				newTasks.filter(task => !task.archived)
+			}
+
+			setArchivedTasks(newTasks.filter(task => task.archived))
+		})
+
+		return () => unsubscribe()
+	}, [selectedProject])
+
+	return { tasks, archivedTasks }
 }
