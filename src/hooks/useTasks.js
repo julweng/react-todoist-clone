@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react"
 import { firebase } from "../firebase"
 import { format } from "date-fns"
-import { collatedtasksExist } from "helpers"
-
-const collatedTasksExist = () => {}
+import { collatedTasksExist } from "helpers"
 
 export const useTasks = selectedProject => {
 	const [tasks, setTasks] = useSTate([])
