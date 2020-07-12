@@ -1,1 +1,1 @@
-export { collatedtasks } from "./collatedTasks"
+export { collatedTasks } from "./collatedTasks"

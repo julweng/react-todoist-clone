@@ -11,22 +11,19 @@ export const useTasks = selectedProject => {
 		let unsubscribe = firebase
 			.firestore()
 			.collection("tasks")
-			.where("userId", "==", "6odc6yfvOFFy7ioPnb1V")
+      .where("userId", "==", "6odc6yfvOFFy7ioPnb1V")
 
-		if (
-			unsubscribe == selectedProject &&
-			!collatedTasksExist(selectedProject)
-		) {
-			unsubscribe = unsubscribe.where("projectId", "==", selectedProject)
-		} else if (selectedProject === "TODAY") {
-			unsubscribe = unsubscribe.where(
-				"date",
-				"==",
-				format(new Date(), "dd/MM/yy")
-			)
-		} else if (selectedProject == "INBOX" || selectedProject === 0) {
-			unsubscribe = unsubscribe.where("date", "==", "")
-		}
+    if (selectedProject && !collatedTasksExist(selectedProject)) {
+      unsubscribe = unsubscribe.where("projectId", "==", selectedProject)
+    } else if (selectedProject === "TODAY") {
+      unsubscribe = unsubscribe.where(
+        "date",
+        "==",
+        format(new Date(), "dd/MM/yyyy")
+      )
+    } else if (selectedProject === "INBOX" || selectedProject === 0) {
+      unsubscribe = unsubscribe.where("date", "==", "")
+    }
 
 		unsubscribe = unsubscribe.onSnapshot(snapshot => {
 			const newTasks = snapshot.docs.map(task => ({
@@ -34,14 +31,15 @@ export const useTasks = selectedProject => {
 				...task.data()
 			}))
 
-			if (setTasks(selectedProject === "NEXT_7")) {
-				newTasks.filter(
-					task => differenceInDays(task.date, new Date()) <= 7 && !task.archived
-				)
-			} else {
-				newTasks.filter(task => !task.archived)
-			}
-
+			setTasks(
+				selectedProject === "NEXT_7"
+					? newTasks.filter(
+							task =>
+								differenceInDays(task.date, new Date()) <= 7 &&
+								!task.archived
+					  )
+					: newTasks.filter(task => !task.archived)
+			)
 			setArchivedTasks(newTasks.filter(task => task.archived))
 		})
 
