@@ -12,7 +12,7 @@ export const useTasks = selectedProject => {
 			.firestore()
 			.collection("tasks")
       .where("userId", "==", "6odc6yfvOFFy7ioPnb1V")
-
+console.log("called", selectedProject)
     if (selectedProject && !collatedTasksExist(selectedProject)) {
       unsubscribe = unsubscribe.where("projectId", "==", selectedProject)
     } else if (selectedProject === "TODAY") {
@@ -22,6 +22,7 @@ export const useTasks = selectedProject => {
         format(new Date(), "dd/MM/yyyy")
       )
     } else if (selectedProject === "INBOX" || selectedProject === 0) {
+      console.log("INBOX")
       unsubscribe = unsubscribe.where("date", "==", "")
     }
 
