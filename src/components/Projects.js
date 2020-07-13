@@ -1,5 +1,7 @@
 import React, { useState } from "react"
+import { string } from "prop-types"
 import { useSelectedProjectValue, useProjectsValue } from "context"
+import { IndividualProject } from "."
 
 export const Projects = ({ activeValue = null }) => {
 	const [active, setActive] = useState(activeValue)
@@ -10,22 +12,26 @@ export const Projects = ({ activeValue = null }) => {
 		active === projectId ? "active sidebar__project" : "sidebar__project"
 
 	const handleClick = (projectId) => {
-    console.log("clicked")
 		setActive(projectId)
 		setSelectedProject(projectId)
 	}
 
 	return (
 		projects &&
-		projects.map(({ projectId, docId }) => (
+		projects.map((project) => (
 			<li
-				key={projectId}
-				data-doc-id={docId}
+				key={project.projectId}
+				data-doc-id={project.docId}
 				data-testid="project-action"
-				className={className(projectId)}
+				className={className(project.projectId)}
+        onClick={() => handleClick(project.projectId)}
 			>
-				<div onClick={() => handleClick(projectId)}>I am a project</div>
+        <IndividualProject project={project} />
 			</li>
 		))
 	)
+}
+
+Projects.propTypes = {
+  activeValue: string
 }
