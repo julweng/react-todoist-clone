@@ -5,5 +5,5 @@ export {
 
 export { 
   SelectedProjectProvider,
-  useSelectedProjectContext
+  useSelectedProjectValue
 } from "./selectedProjectContext"

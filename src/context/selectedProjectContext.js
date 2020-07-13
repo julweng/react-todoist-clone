@@ -5,7 +5,7 @@ export const SelectedProjectContext = createContext()
 
 export const SelectedProjectProvider = ({ children }) => {
 	// if no project is selected, default is INBOX
-	const { selectedProject, setSelectedProject } = useState("INBOX")
+	const [selectedProject, setSelectedProject] = useState("INBOX")
 
 	return (
 		<SelectedProjectContext.Provider
@@ -16,7 +16,7 @@ export const SelectedProjectProvider = ({ children }) => {
 	)
 }
 
-export const useSelectedProjectContext = () =>
+export const useSelectedProjectValue = () =>
 	useContext(SelectedProjectContext)
 
 SelectedProjectProvider.propTypes = {
