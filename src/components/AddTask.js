@@ -3,6 +3,7 @@ import { bool, func } from "prop-types"
 import { FaRegListAlt, FaRegCalendarAlt } from "react-icons/fa"
 import { format, addDays } from "date-fns"
 import { useSelectedProjectValue } from "context"
+import { ProjectOverlay } from "."
 import { firebase } from "../firebase"
 
 export const AddTask = ({
@@ -56,19 +57,19 @@ export const AddTask = ({
 
 	const handleCancel = () => {
 		if (showQuickAddTask) {
-      setShowQuickAddTask(false)
-    }
-    setShowMain(false)
+			setShowQuickAddTask(false)
+		}
+		setShowMain(false)
 		setShowProjectOverlay(false)
 	}
 
 	const handleOnChange = e => setTask(e.target.value)
 
-  const handleAddTask = () => addTask()
-  
-  const handleShowProject = () => setShowProjectOverlay(!showProjectOverlay)
+	const handleAddTask = () => addTask()
 
-  const handleShowTaskDate = () => setShowTaskDate(!showTaskDate)
+	const handleShowProject = () => setShowProjectOverlay(!showProjectOverlay)
+
+	const handleShowTaskDate = () => setShowTaskDate(!showTaskDate)
 
 	return (
 		<div
@@ -101,7 +102,11 @@ export const AddTask = ({
 							</div>
 						</>
 					)}
-					<p>project overlay here</p>
+					<ProjectOverlay
+						showProjectOverlay={showProjectOverlay}
+						setProject={setProject}
+						setShowProjectOverlay={setShowProjectOverlay}
+					/>
 					<p>Task Date here</p>
 					<input
 						className="add-task__content"
@@ -118,29 +123,29 @@ export const AddTask = ({
 					>
 						Add Task
 					</button>
-          {!showQuickAddTask && (
-            <span
-              className="add-task__cancel"
-              data-testid="add-task-main-cancel"
-              onClick={() => handleCancel()}
-            >
-              Cancel
-            </span>
-          )}
-          <span 
-            className="add-task__project"
-            data-testid="show-project-overlay"
-            onClick={() => handleShowProject()}
-          >
-            <FaRegListAlt />
-          </span>
-          <span 
-            className="add-task__date"
-            data-testid="show-task-date-overlay"
-            onClick={() => handleShowTaskDate()}
-          >
-            <FaRegCalendarAlt />
-          </span>
+					{!showQuickAddTask && (
+						<span
+							className="add-task__cancel"
+							data-testid="add-task-main-cancel"
+							onClick={() => handleCancel()}
+						>
+							Cancel
+						</span>
+					)}
+					<span
+						className="add-task__project"
+						data-testid="show-project-overlay"
+						onClick={() => handleShowProject()}
+					>
+						<FaRegListAlt />
+					</span>
+					<span
+						className="add-task__date"
+						data-testid="show-task-date-overlay"
+						onClick={() => handleShowTaskDate()}
+					>
+						<FaRegCalendarAlt />
+					</span>
 				</div>
 			)}
 		</div>
@@ -148,7 +153,7 @@ export const AddTask = ({
 }
 
 AddTask.propTypes = {
-  showAddTaskMain: bool,
+	showAddTaskMain: bool,
 	shouldShowMain: bool,
 	showQuickAddTask: bool,
 	setShowQuickAddTask: func
