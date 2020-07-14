@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useTasks } from "hooks"
 import { getTitle, getCollatedTitle, collatedTasksExist } from "helpers"
 import { useSelectedProjectValue, useProjectsValue } from "context"
-import { Checkbox } from "." 
+import { AddTask, Checkbox } from "." 
 import { collatedTasks } from "../constants"
 
 export const Tasks = () => {
@@ -37,6 +37,7 @@ export const Tasks = () => {
           </li>
         ))}
       </ul>
+      <AddTask />
     </div>
   )
 }

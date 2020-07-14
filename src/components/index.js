@@ -1,4 +1,5 @@
 export { AddProject } from "./AddProject"
+export { AddTask } from "./AddTask"
 export { Checkbox } from "./Checkbox"
 export { IndividualProject } from "./IndividualProject"
 export { Projects } from "./Projects"
