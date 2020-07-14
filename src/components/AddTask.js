@@ -26,9 +26,9 @@ export const AddTask = ({
 		let collatedDate = ""
 
 		if (projectId === "TODAY") {
-			collatedDate = format(new Date(), "dd/MM/yyyy")
+			collatedDate = format(new Date(), "yyyy-MM-dd")
 		} else if (projectId === "NEXT_7") {
-			collatedDate = format(addDays(new Date(), 7), "dd/MM/yyyy")
+			collatedDate = format(addDays(new Date(), 7), "yyyy-MM-dd")
 		}
 
 		return (

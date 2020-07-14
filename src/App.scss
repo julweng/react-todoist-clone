@@ -677,7 +677,7 @@ header {
 
   &__list li {
     @include task-item();
-    padding: 0;
+    line-height: 2 !important;
 
     div:nth-child(1) {
       width: 100%;

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { firebase } from "../firebase"
-import { differenceInDays, format } from "date-fns"
+import { differenceInDays, parseISO, format } from "date-fns"
 import { collatedTasksExist } from "helpers"
 
 export const useTasks = selectedProject => {
@@ -18,7 +18,7 @@ export const useTasks = selectedProject => {
       unsubscribe = unsubscribe.where(
         "date",
         "==",
-        format(new Date(), "dd/MM/yyyy")
+        format(new Date(), "yyyy-MM-dd")
       )
     } else if (selectedProject === "INBOX" || selectedProject === 0) {
       unsubscribe = unsubscribe.where("date", "==", "")
@@ -34,14 +34,14 @@ export const useTasks = selectedProject => {
 				selectedProject === "NEXT_7"
 					? newTasks.filter(
 							task =>
-								differenceInDays(task.date, new Date()) <= 7 &&
+								differenceInDays(parseISO(task.date), new Date()) <= 7 &&
 								!task.archived
 					  )
 					: newTasks.filter(task => !task.archived)
-			)
+      )
 			setArchivedTasks(newTasks.filter(task => task.archived))
 		})
-
+   
 		return () => unsubscribe()
 	}, [selectedProject])
 

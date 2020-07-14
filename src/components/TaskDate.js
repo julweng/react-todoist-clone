@@ -6,7 +6,7 @@ import { FaRegPaperPlane, FaSpaceShuttle, FaSun } from "react-icons/fa"
 export const TaskDate = ({ setTaskDate, showTaskDate, setShowTaskDate }) => {
   const showDate = () => {
     setShowTaskDate(false)
-		setTaskDate(format(new Date(), "dd/MM/yyyy"))
+		setTaskDate(format(new Date(), "yyyy-MM-dd"))
   }
 
   const showDateKeyDown = (e) => {
@@ -15,7 +15,7 @@ export const TaskDate = ({ setTaskDate, showTaskDate, setShowTaskDate }) => {
 
   const showTomorrowTaskDate = () => {
     setShowTaskDate(false)
-    setTaskDate(format(addDays(new Date(), 1), "dd/MM/yyyy"))
+    setTaskDate(format(addDays(new Date(), 1), "yyyy-MM-dd"))
   }
 
   const showTomorrowTaskDateKeyDown = (e) => {
@@ -24,7 +24,7 @@ export const TaskDate = ({ setTaskDate, showTaskDate, setShowTaskDate }) => {
 
   const showNextWeekTaskDate = () => {
     setShowTaskDate(false)
-		setTaskDate(format(addDays(new Date(), 7), "dd/MM/yyyy"))
+		setTaskDate(format(addDays(new Date(), 7), "yyyy-MM-dd"))
   }
 
   const showNextWeekTaskDateKeyDown = (e) => {
