@@ -3,7 +3,7 @@ import { bool, func } from "prop-types"
 import { FaRegListAlt, FaRegCalendarAlt } from "react-icons/fa"
 import { format, addDays } from "date-fns"
 import { useSelectedProjectValue } from "context"
-import { ProjectOverlay } from "."
+import { ProjectOverlay, TaskDate } from "."
 import { firebase } from "../firebase"
 
 export const AddTask = ({
@@ -107,7 +107,11 @@ export const AddTask = ({
 						setProject={setProject}
 						setShowProjectOverlay={setShowProjectOverlay}
 					/>
-					<p>Task Date here</p>
+					<TaskDate 
+            setTaskDate={setTaskDate}
+            showTaskDate={showTaskDate}
+            setShowTaskDate={setShowTaskDate}
+          />
 					<input
 						className="add-task__content"
 						data-testid="add-task-content"
