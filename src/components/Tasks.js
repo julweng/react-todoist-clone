@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import { useTasks } from "hooks"
 import { getTitle, getCollatedTitle, collatedTasksExist } from "helpers"
 import { useSelectedProjectValue, useProjectsValue } from "context"
