@@ -5,51 +5,73 @@ import { useProjectsValue, useSelectedProjectValue } from "context"
 import { firebase } from "../firebase"
 
 export const IndividualProject = ({ project }) => {
-  const [showConfirm, setShowConfirm] = useState(false)
-  const { projects, setProjects } = useProjectsValue()
-  const { setSelectedProject } = useSelectedProjectValue() 
+	const [showConfirm, setShowConfirm] = useState(false)
+	const { projects, setProjects } = useProjectsValue()
+	const { setSelectedProject } = useSelectedProjectValue()
 
-  const deleteProject = docId => {
-    firebase
-      .firestore()
-      .collection("projects")
-      .doc(docId)
-      .delete()
-      .then(() => {
-        setProjects([...projects])
-        setSelectedProject("INBOX")
-      })
-  }
+	const handleShowConfirm = () => setShowConfirm(!showConfirm)
 
-  return (
-    <>
-      <span className="sidebar__dot">•</span> 
-      <span className="sidebar__project-name">{project.name}</span>
-      <span 
-        className="sidebar__project-delete"
-        data-testid="delete-project"
-        onClick={() => setShowConfirm(!showConfirm)}
-      >
-        <FaTrashAlt />
-        {showConfirm && (
-          <div className="project-delete-modal">
-            <div className="project-delete-modal__inner">
-              <p>Are you sure you want to delete this project?</p>
-              <div>
-              <button type="button" onClick={() => deleteProject(project.docId)}>Delete</button>
-              <span onClick={() => setShowConfirm(!showConfirm)}>Cancel</span>
-              </div>
-            </div>
-          </div>
-        )}
-      </span>
-    </>
-  )
+	const handleDelete = () => deleteProject(project.docId)
+
+	const deleteProject = docId => {
+		firebase
+			.firestore()
+			.collection("projects")
+			.doc(docId)
+			.delete()
+			.then(() => {
+				setProjects([...projects])
+				setSelectedProject("INBOX")
+			})
+	}
+
+	return (
+		<>
+			<span className="sidebar__dot">•</span>
+			<span className="sidebar__project-name">{project.name}</span>
+			<span
+				className="sidebar__project-delete"
+				data-testid="delete-project"
+				onClick={() => handleShowConfirm()}
+				onKeyDown={e => {
+					if (e.key === "Enter") handleShowConfirm()
+				}}
+				tabIndex={0}
+				role="button"
+				aria-label="confirm deletion of project"
+			>
+				<FaTrashAlt />
+				{showConfirm && (
+					<div className="project-delete-modal">
+						<div className="project-delete-modal__inner">
+							<p>Are you sure you want to delete this project?</p>
+							<div>
+								<button type="button" onClick={() => handleDelete()}>
+									Delete
+								</button>
+								<span
+									onClick={() => handleShowConfirm()}
+									onKenDown={e => {
+										if (e.key === "Enter") handleShowConfirm()
+									}}
+									tabIndex={0}
+									role="button"
+									aria-label="cancel adding project"
+								>
+									Cancel
+								</span>
+							</div>
+						</div>
+					</div>
+				)}
+			</span>
+		</>
+	)
 }
 
 IndividualProject.propTypes = {
-  project: shape({
-    name: string,
-    docId: string
-  })
+	project: shape({
+		name: string,
+		docId: string
+	})
 }
