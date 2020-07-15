@@ -8,7 +8,7 @@ export const AddProject = ({ shouldShow = false }) => {
 	const [show, setShow] = useState(shouldShow)
 	const [projectName, setProjectName] = useState("")
 	const projectId = generatePushID()
-	const { setProjects } = useProjectsValue()
+	const { projects, setProjects } = useProjectsValue()
 
 	const handleOnChange = e => setProjectName(e.target.value)
 
@@ -23,7 +23,7 @@ export const AddProject = ({ shouldShow = false }) => {
 					userId: "6odc6yfvOFFy7ioPnb1V"
 				})
 				.then(() => {
-					setProjects([])
+					setProjects([...projects])
 					setProjectName("")
 					setShow(false)
 				})
