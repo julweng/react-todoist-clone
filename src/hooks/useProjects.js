@@ -2,13 +2,15 @@ import { useEffect, useState } from "react"
 import { firebase } from "../firebase"
 
 export const useProjects = () => {
+  const userId = process.env.REACT_APP_USER_ID
+
 	const [projects, setProjects] = useState([])
 
 	useEffect(() => {
 		firebase
 			.firestore()
 			.collection("projects")
-			.where("userId", "==", "6odc6yfvOFFy7ioPnb1V")
+			.where("userId", "==", userId)
 			.orderBy("projectId")
 			.get()
 			.then(snapshot => {

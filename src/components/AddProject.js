@@ -5,6 +5,8 @@ import { useProjectsValue } from "context"
 import { firebase } from "../firebase"
 
 export const AddProject = ({ shouldShow = false }) => {
+  const userId = process.env.REACT_APP_USER_ID
+
 	const [show, setShow] = useState(shouldShow)
 	const [projectName, setProjectName] = useState("")
 	const projectId = generatePushID()
@@ -20,7 +22,7 @@ export const AddProject = ({ shouldShow = false }) => {
 				.add({
 					projectId,
 					name: projectName,
-					userId: "6odc6yfvOFFy7ioPnb1V"
+					userId
 				})
 				.then(() => {
 					setProjects([...projects])

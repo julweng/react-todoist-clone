@@ -4,6 +4,8 @@ import { differenceInDays, parseISO, format } from "date-fns"
 import { collatedTasksExist } from "helpers"
 
 export const useTasks = selectedProject => {
+  const userId = process.env.REACT_APP_USER_ID
+
 	const [tasks, setTasks] = useState([])
 	const [archivedTasks, setArchivedTasks] = useState([])
 
@@ -11,7 +13,7 @@ export const useTasks = selectedProject => {
 		let unsubscribe = firebase
 			.firestore()
 			.collection("tasks")
-      .where("userId", "==", "6odc6yfvOFFy7ioPnb1V")
+      .where("userId", "==", userId)
     if (selectedProject && !collatedTasksExist(selectedProject)) {
       unsubscribe = unsubscribe.where("projectId", "==", selectedProject)
     } else if (selectedProject === "TODAY") {

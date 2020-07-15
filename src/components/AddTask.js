@@ -12,6 +12,8 @@ export const AddTask = ({
 	showQuickAddTask,
 	setShowQuickAddTask
 }) => {
+  const userId = process.env.REACT_APP_USER_ID
+
 	const [task, setTask] = useState("")
 	const [taskDate, setTaskDate] = useState("")
 	const [project, setProject] = useState("")
@@ -42,7 +44,7 @@ export const AddTask = ({
 					projectId,
 					task,
 					date: collatedDate || taskDate,
-					userId: "6odc6yfvOFFy7ioPnb1V"
+					userId
 				})
 				.then(() => {
 					setTask("")
