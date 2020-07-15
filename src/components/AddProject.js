@@ -33,7 +33,7 @@ export const AddProject = ({ shouldShow = false }) => {
 
 	const handleSubmitClick = () => addProject()
 
-	const handleCancelClick = () => setShow(false)
+  const handleCancelClick = () => setShow(false)
 
 	const handleAddClick = () => setShow(!show)
 
@@ -61,6 +61,11 @@ export const AddProject = ({ shouldShow = false }) => {
 						data-testid="hide-project-overlay"
 						className="add-project__cancel"
 						onClick={() => handleCancelClick()}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleCancelClick()
+            }}
+            tabIndex={0}
+            role="button"
 					>
 						Cancel
 					</span>
@@ -71,6 +76,11 @@ export const AddProject = ({ shouldShow = false }) => {
 				data-testid="add-project-action"
 				className="add-project__text"
 				onClick={() => handleAddClick()}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") handleAddClick()
+        }}
+        role="button"
+        tabIndex={0}
 			>
 				Add Project
 			</span>
