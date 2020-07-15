@@ -65,11 +65,18 @@ export const AddTask = ({
 
 	const handleOnChange = e => setTask(e.target.value)
 
-	const handleAddTask = () => addTask()
-
+	const handleAddTask = () => {
+		showQuickAddTask ? addTask() && setShowQuickAddTask(false) : addTask()
+	}
 	const handleShowProject = () => setShowProjectOverlay(!showProjectOverlay)
 
 	const handleShowTaskDate = () => setShowTaskDate(!showTaskDate)
+
+	const handleCancelQuickAdd = () => {
+		setShowMain(false)
+		setShowProjectOverlay(false)
+		setShowQuickAddTask(false)
+	}
 
 	return (
 		<div
@@ -95,7 +102,7 @@ export const AddTask = ({
 								<span
 									className="add-task__cancel-x"
 									data-testid="add-task-quick-cancel"
-									onClick={() => handleCancel()}
+									onClick={() => handleCancelQuickAdd()}
 								>
 									X
 								</span>
@@ -107,11 +114,11 @@ export const AddTask = ({
 						setProject={setProject}
 						setShowProjectOverlay={setShowProjectOverlay}
 					/>
-					<TaskDate 
-            setTaskDate={setTaskDate}
-            showTaskDate={showTaskDate}
-            setShowTaskDate={setShowTaskDate}
-          />
+					<TaskDate
+						setTaskDate={setTaskDate}
+						showTaskDate={showTaskDate}
+						setShowTaskDate={setShowTaskDate}
+					/>
 					<input
 						className="add-task__content"
 						data-testid="add-task-content"
