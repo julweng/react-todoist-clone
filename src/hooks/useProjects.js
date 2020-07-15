@@ -23,7 +23,7 @@ export const useProjects = () => {
           setProjects(allProjects)
         }
       })
-  }, [projects])
+  }, [projects, userId])
   
   return { projects, setProjects }
 }

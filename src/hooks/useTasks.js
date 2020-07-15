@@ -45,7 +45,7 @@ export const useTasks = selectedProject => {
 		})
    
 		return () => unsubscribe()
-	}, [selectedProject])
+	}, [selectedProject, userId])
 
 	return { tasks, archivedTasks }
 }
