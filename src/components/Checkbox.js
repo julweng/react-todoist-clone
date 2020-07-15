@@ -16,6 +16,9 @@ export const Checkbox = ({ id }) => {
 			onKeyDown={e => {
 				if (e.key === "Enter") archiveTask()
 			}}
+      aria-label={`mark ${taskDesc} as done?`}
+      role="button"
+      tabIndex={0}
 		>
 			<span className="checkbox" />
 		</div>
