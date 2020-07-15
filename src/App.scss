@@ -506,7 +506,7 @@ header {
 		list-style-type: none;
 		border-bottom: 1px solid #f0f0f0;
 
-		.checkbox-holder {
+		.checkbox__holder {
 			margin-right: 20px;
 			display: -webkit-box;
 			display: -ms-flexbox;
@@ -527,7 +527,7 @@ header {
 				width: 16px;
 				display: block;
 				border: 1px solid gray;
-				border-radius: 16px;
+				border-radius: 16px !important;
 			}
 		}
 	}
