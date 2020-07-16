@@ -1,7 +1,8 @@
 import React from "react"
+import { string } from "prop-types"
 import { firebase } from "../firebase"
 
-export const Checkbox = ({ id }) => {
+export const Checkbox = ({ id, taskDesc }) => {
 	const archiveTask = () => {
 		firebase.firestore().collection("tasks").doc(id).update({
 			archived: true
@@ -23,4 +24,9 @@ export const Checkbox = ({ id }) => {
 			<span className="checkbox" />
 		</div>
 	)
+}
+
+Checkbox.propTypes = {
+  id: string,
+  taskDesc: string
 }
