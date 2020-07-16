@@ -7,12 +7,12 @@ export const Header = ({ darkMode, setDarkMode }) => {
 	const [shouldShowMain, setShouldShowMain] = useState(false)
 	const [showQuickAddTask, setShowQuickAddTask] = useState(false)
 
-  const handleSetDarkMode = () => setDarkMode(!darkMode)
-  
-  const handleAdd = () => {
-    setShouldShowMain(true)
-    setShowQuickAddTask(true)
-  }
+	const handleSetDarkMode = () => setDarkMode(!darkMode)
+
+	const handleAdd = () => {
+		setShouldShowMain(true)
+		setShowQuickAddTask(true)
+	}
 
 	return (
 		<header className="header" data-testid="header">
@@ -22,34 +22,40 @@ export const Header = ({ darkMode, setDarkMode }) => {
 				</div>
 				<div className="settings">
 					<ul>
-						<li 
-              data-testid="quick-add-task-action"
-              className="settings__add"
-              onClick={() => handleAdd()}
-            >
-							+
+						<li className="settings__add">
+							<button
+								data-testid="quick-add-task-action"
+								aria-label="quick add task"
+								type="button"
+								onClick={() => handleAdd()}
+							>
+								+
+							</button>
 						</li>
-						<li
-							data-testid="dark-mode-action"
-							className="settings__darkmode"
-							onClick={() => handleSetDarkMode()}
-						>
-							<FaPizzaSlice />
+						<li className="settings__darkmode">
+							<button
+								data-testid="dark-mode-action"
+								aria-label="darkmode on/off"
+								type="button"
+								onClick={() => handleSetDarkMode()}
+							>
+								<FaPizzaSlice />
+							</button>
 						</li>
 					</ul>
 				</div>
 			</nav>
-      <AddTask 
-        showAddTaskMain={false}
-        shouldShowMain={shouldShowMain}
-        showQuickAddTask={showQuickAddTask}
-        setShowQuickAddTask={setShowQuickAddTask}
-      />
+			<AddTask
+				showAddTaskMain={false}
+				shouldShowMain={shouldShowMain}
+				showQuickAddTask={showQuickAddTask}
+				setShowQuickAddTask={setShowQuickAddTask}
+			/>
 		</header>
 	)
 }
 
 Header.propTypes = {
-  darkMode: bool,
-  setDarkMode: func
+	darkMode: bool,
+	setDarkMode: func
 }
