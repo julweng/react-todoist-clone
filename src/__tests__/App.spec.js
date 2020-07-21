@@ -13,7 +13,6 @@ describe("App", () => {
   it("Renders the app with darkmode if the mode is activated", () => {
     const props = createProps({ darkModeDefault: true })
     render(<App {...props} />)
-    console.log(props)
 		expect(screen.getByTestId("application")).toHaveClass("darkmode")
   })
 })
