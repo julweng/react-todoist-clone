@@ -32,7 +32,6 @@ export const Projects = ({ activeValue = null }) => {
 					aria-label={`Select ${project.name} as the task project`}
 					onClick={() => handleClick(project.projectId)}
 					onKeyDown={e => {
-            console.log(e.key)
 						if (e.key === "Enter") handleClick(project.projectId)
 					}}
 				>
