@@ -55,24 +55,44 @@ export const AddTask = ({
 		)
 	}
 
-	const handleShowMain = () => setShowMain(!showMain)
+	const handleShowMain = () => {
+    setShowMain(!showMain)
+    if (showTaskDate) {
+      setShowTaskDate(false)
+    }
+    if(showProjectOverlay) {
+      setShowProjectOverlay(false)
+    }
+  }
 
 	const handleCancel = () => {
 		if (showQuickAddTask) {
 			setShowQuickAddTask(false)
 		}
 		setShowMain(false)
-		setShowProjectOverlay(false)
+    setShowProjectOverlay(false)
+    setShowTaskDate(false)
 	}
 
 	const handleOnChange = e => setTask(e.target.value)
 
 	const handleAddTask = () => {
 		showQuickAddTask ? addTask() && setShowQuickAddTask(false) : addTask()
-	}
-	const handleShowProject = () => setShowProjectOverlay(!showProjectOverlay)
+  }
+  
+	const handleShowProject = () => {
+    if (showTaskDate) {
+      setShowTaskDate(false)
+    }
+    setShowProjectOverlay(!showProjectOverlay)
+  }
 
-	const handleShowTaskDate = () => setShowTaskDate(!showTaskDate)
+	const handleShowTaskDate = () => {
+    if(showProjectOverlay) {
+      setShowProjectOverlay(false)
+    }
+    setShowTaskDate(!showTaskDate)
+  }
 
 	const handleCancelQuickAdd = () => {
 		setShowMain(false)
