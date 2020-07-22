@@ -50,7 +50,7 @@ export const Sidebar = () => {
 					className={active === "today" ? "active" : undefined}
 				>
 					<div
-						data-testid="today=action"
+						data-testid="today-action"
 						aria-label="show today's tasks"
 						tabIndex={0}
 						role="button"
