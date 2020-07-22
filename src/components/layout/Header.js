@@ -38,6 +38,9 @@ export const Header = ({ darkMode, setDarkMode }) => {
 								aria-label="darkmode on/off"
 								type="button"
 								onClick={() => handleSetDarkMode()}
+								onKeyDown={e => {
+									if (e.key === "Enter") handleSetDarkMode()
+								}}
 							>
 								<FaPizzaSlice />
 							</button>
