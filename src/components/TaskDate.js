@@ -27,7 +27,7 @@ export const TaskDate = ({ setTaskDate, showTaskDate, setShowTaskDate }) => {
 						<div
 							onClick={() => showDate()}
 							onKeyDown={e => {
-								if (e.key === "Enter") showNextWeekTaskDate()
+								if (e.key === "Enter") showDate()
 							}}
 							data-testid="task-date-today"
 							tabIndex={0}
