@@ -95,8 +95,11 @@ export const AddTask = ({
   }
 
 	const handleCancelQuickAdd = () => {
-		setShowMain(false)
-		setShowProjectOverlay(false)
+		if (showMain) {
+      setShowMain(false)
+    }
+    setShowProjectOverlay(false)
+    setShowTaskDate(false)
 		setShowQuickAddTask(false)
 	}
 
