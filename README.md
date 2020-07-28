@@ -20,4 +20,5 @@ The app :
 - JavaScript
 - ReactJS
 - react-testing-library
+- Firebase
 
