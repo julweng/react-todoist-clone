@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { bool } from "prop-types"
-import { generatePushID } from "helpers"
+import { generatePushId } from "helpers"
 import { useProjectsValue } from "context"
 import { firebase } from "../firebase"
 
@@ -9,7 +9,7 @@ export const AddProject = ({ shouldShow = false }) => {
 
 	const [show, setShow] = useState(shouldShow)
 	const [projectName, setProjectName] = useState("")
-	const projectId = generatePushID()
+	const projectId = generatePushId()
 	const { projects, setProjects } = useProjectsValue()
 
 	const handleOnChange = e => setProjectName(e.target.value)
