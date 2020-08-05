@@ -1,7 +1,7 @@
 /**
  * Fancy ID generator that creates 20-character string identifiers with the following properties:
  * https://gist.github.com/mikelehen/3596a30bd69384624c11
- * 
+ *
  * 1. They're based on timestamp so that they sort *after* any existing ids.
  * 2. They contain 72-bits of random data after the timestamp so that IDs won't collide with other clients' IDs.
  * 3. They sort *lexicographically* (so the timestamp is converted to characters that will sort properly).

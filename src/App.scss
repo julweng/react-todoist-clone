@@ -434,25 +434,25 @@ header {
 		top: 10px;
 		left: -30px;
 		background-color: white;
-    flex-direction: column;
+		flex-direction: column;
 
 		p {
 			margin-top: 5px;
 			margin-bottom: 5px;
 			line-height: normal;
 			font-weight: normal;
-      font-size: 15px;
-      text-align: center;
+			font-size: 15px;
+			text-align: center;
 		}
 
 		button {
-      @include btn("50px");
-      flex-direction: row;
+			@include btn("50px");
+			flex-direction: row;
 		}
 		span {
 			@include cancel();
-      font-weight: normal;
-      flex-direction: row;
+			font-weight: normal;
+			flex-direction: row;
 		}
 	}
 }

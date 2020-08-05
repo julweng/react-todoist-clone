@@ -86,14 +86,16 @@ export const Sidebar = () => {
 					</div>
 				</li>
 			</ul>
-			<div 
-        className="sidebar__middle" 
-        aria-label="show/hide projects"
-        onClick={() => handleChevronClick()}
-        onKeyDown={(e) => {if (e.key==="Enter") handleChevronClick()}}
-        role="button"
-        tabIndex={0}
-      >
+			<div
+				className="sidebar__middle"
+				aria-label="show/hide projects"
+				onClick={() => handleChevronClick()}
+				onKeyDown={e => {
+					if (e.key === "Enter") handleChevronClick()
+				}}
+				role="button"
+				tabIndex={0}
+			>
 				<span>
 					<FaChevronDown
 						className={!showProjects ? "hidden-projects" : undefined}

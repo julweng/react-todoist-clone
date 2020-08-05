@@ -24,14 +24,14 @@ export const ProjectOverlay = ({
 							key={project.docId}
 							data-testid="project-overlay-action"
 							onClick={() => handleProjectClick(project.projectId)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  handleProjectClick(project.projectId)
-                }
-              }}
-              role="button"
-              tabIndex={0}
-              aria-label="select the task project"
+							onKeyDown={e => {
+								if (e.key === "Enter") {
+									handleProjectClick(project.projectId)
+								}
+							}}
+							role="button"
+							tabIndex={0}
+							aria-label="select the task project"
 						>
 							{project.name}
 						</li>

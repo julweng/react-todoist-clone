@@ -17,9 +17,9 @@ export const Checkbox = ({ id, taskDesc }) => {
 			onKeyDown={e => {
 				if (e.key === "Enter") archiveTask()
 			}}
-      aria-label={`mark ${taskDesc} as done?`}
-      role="button"
-      tabIndex={0}
+			aria-label={`mark ${taskDesc} as done?`}
+			role="button"
+			tabIndex={0}
 		>
 			<span className="checkbox" />
 		</div>
@@ -27,6 +27,6 @@ export const Checkbox = ({ id, taskDesc }) => {
 }
 
 Checkbox.propTypes = {
-  id: string,
-  taskDesc: string
+	id: string,
+	taskDesc: string
 }

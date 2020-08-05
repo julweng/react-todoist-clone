@@ -12,7 +12,7 @@ export const AddTask = ({
 	showQuickAddTask,
 	setShowQuickAddTask
 }) => {
-  const userId = process.env.REACT_APP_USER_ID
+	const userId = process.env.REACT_APP_USER_ID
 
 	const [task, setTask] = useState("")
 	const [taskDate, setTaskDate] = useState("")
@@ -56,50 +56,50 @@ export const AddTask = ({
 	}
 
 	const handleShowMain = () => {
-    setShowMain(!showMain)
-    if (showTaskDate) {
-      setShowTaskDate(false)
-    }
-    if(showProjectOverlay) {
-      setShowProjectOverlay(false)
-    }
-  }
+		setShowMain(!showMain)
+		if (showTaskDate) {
+			setShowTaskDate(false)
+		}
+		if (showProjectOverlay) {
+			setShowProjectOverlay(false)
+		}
+	}
 
 	const handleCancel = () => {
 		if (showQuickAddTask) {
 			setShowQuickAddTask(false)
 		}
 		setShowMain(false)
-    setShowProjectOverlay(false)
-    setShowTaskDate(false)
+		setShowProjectOverlay(false)
+		setShowTaskDate(false)
 	}
 
 	const handleOnChange = e => setTask(e.target.value)
 
 	const handleAddTask = () => {
 		showQuickAddTask ? addTask() && setShowQuickAddTask(false) : addTask()
-  }
-  
+	}
+
 	const handleShowProject = () => {
-    if (showTaskDate) {
-      setShowTaskDate(false)
-    }
-    setShowProjectOverlay(!showProjectOverlay)
-  }
+		if (showTaskDate) {
+			setShowTaskDate(false)
+		}
+		setShowProjectOverlay(!showProjectOverlay)
+	}
 
 	const handleShowTaskDate = () => {
-    if(showProjectOverlay) {
-      setShowProjectOverlay(false)
-    }
-    setShowTaskDate(!showTaskDate)
-  }
+		if (showProjectOverlay) {
+			setShowProjectOverlay(false)
+		}
+		setShowTaskDate(!showTaskDate)
+	}
 
 	const handleCancelQuickAdd = () => {
 		if (showMain) {
-      setShowMain(false)
-    }
-    setShowProjectOverlay(false)
-    setShowTaskDate(false)
+			setShowMain(false)
+		}
+		setShowProjectOverlay(false)
+		setShowTaskDate(false)
 		setShowQuickAddTask(false)
 	}
 
@@ -113,12 +113,12 @@ export const AddTask = ({
 					className="add-task__shallow"
 					data-testid="show-main-action"
 					onClick={() => handleShowMain()}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") handleShowMain()
-          }}
-          tabIndex={0}
-          aria-label="Add task"
-          role="button"
+					onKeyDown={e => {
+						if (e.key === "Enter") handleShowMain()
+					}}
+					tabIndex={0}
+					aria-label="Add task"
+					role="button"
 				>
 					<span className="add-task__plus">+</span>
 					<span className="add-task__text">Add Task</span>
@@ -133,15 +133,15 @@ export const AddTask = ({
 								<span
 									className="add-task__cancel-x"
 									data-testid="add-task-quick-cancel"
-                  aria-label="cancel adding task"
+									aria-label="cancel adding task"
 									onClick={() => handleCancelQuickAdd()}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      handleCancelQuickAdd()
-                    }
-                  }}
-                  tabIndex={0}
-                  role="button"
+									onKeyDown={e => {
+										if (e.key === "Enter") {
+											handleCancelQuickAdd()
+										}
+									}}
+									tabIndex={0}
+									role="button"
 								>
 									X
 								</span>
@@ -161,7 +161,7 @@ export const AddTask = ({
 					<input
 						className="add-task__content"
 						data-testid="add-task-content"
-            aria-label="enter your task"
+						aria-label="enter your task"
 						type="text"
 						value={task}
 						onChange={e => handleOnChange(e)}
@@ -178,15 +178,15 @@ export const AddTask = ({
 						<span
 							className="add-task__cancel"
 							data-testid="add-task-main-cancel"
-              aria-label="cancel adding a task"
+							aria-label="cancel adding a task"
 							onClick={() => handleCancel()}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  handleCancel()
-                }
-              }}
-              tabIndex={0}
-              role="button"
+							onKeyDown={e => {
+								if (e.key === "Enter") {
+									handleCancel()
+								}
+							}}
+							tabIndex={0}
+							role="button"
 						>
 							Cancel
 						</span>
@@ -195,13 +195,13 @@ export const AddTask = ({
 						className="add-task__project"
 						data-testid="show-project-overlay"
 						onClick={() => handleShowProject()}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                handleShowProject()
-              }
-            }}
-            tabIndex={0}
-            role="button"
+						onKeyDown={e => {
+							if (e.key === "Enter") {
+								handleShowProject()
+							}
+						}}
+						tabIndex={0}
+						role="button"
 					>
 						<FaRegListAlt />
 					</span>
@@ -209,13 +209,13 @@ export const AddTask = ({
 						className="add-task__date"
 						data-testid="show-task-date-overlay"
 						onClick={() => handleShowTaskDate()}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                handleShowTaskDate()
-              }
-            }}
-            tabIndex={0}
-            role="button"
+						onKeyDown={e => {
+							if (e.key === "Enter") {
+								handleShowTaskDate()
+							}
+						}}
+						tabIndex={0}
+						role="button"
 					>
 						<FaRegCalendarAlt />
 					</span>

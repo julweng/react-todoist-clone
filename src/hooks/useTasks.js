@@ -4,7 +4,7 @@ import { differenceInDays, parseISO, format } from "date-fns"
 import { collatedTasksExist } from "helpers"
 
 export const useTasks = selectedProject => {
-  const userId = process.env.REACT_APP_USER_ID
+	const userId = process.env.REACT_APP_USER_ID
 
 	const [tasks, setTasks] = useState([])
 	const [archivedTasks, setArchivedTasks] = useState([])
@@ -13,18 +13,18 @@ export const useTasks = selectedProject => {
 		let unsubscribe = firebase
 			.firestore()
 			.collection("tasks")
-      .where("userId", "==", userId)
-    if (selectedProject && !collatedTasksExist(selectedProject)) {
-      unsubscribe = unsubscribe.where("projectId", "==", selectedProject)
-    } else if (selectedProject === "TODAY") {
-      unsubscribe = unsubscribe.where(
-        "date",
-        "==",
-        format(new Date(), "yyyy-MM-dd")
-      )
-    } else if (selectedProject === "INBOX" || selectedProject === 0) {
-      unsubscribe = unsubscribe.where("date", "==", "")
-    }
+			.where("userId", "==", userId)
+		if (selectedProject && !collatedTasksExist(selectedProject)) {
+			unsubscribe = unsubscribe.where("projectId", "==", selectedProject)
+		} else if (selectedProject === "TODAY") {
+			unsubscribe = unsubscribe.where(
+				"date",
+				"==",
+				format(new Date(), "yyyy-MM-dd")
+			)
+		} else if (selectedProject === "INBOX" || selectedProject === 0) {
+			unsubscribe = unsubscribe.where("date", "==", "")
+		}
 
 		unsubscribe = unsubscribe.onSnapshot(snapshot => {
 			const newTasks = snapshot.docs.map(task => ({
@@ -40,10 +40,10 @@ export const useTasks = selectedProject => {
 								!task.archived
 					  )
 					: newTasks.filter(task => !task.archived)
-      )
+			)
 			setArchivedTasks(newTasks.filter(task => task.archived))
 		})
-   
+
 		return () => unsubscribe()
 	}, [selectedProject, userId])
 

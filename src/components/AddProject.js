@@ -5,7 +5,7 @@ import { useProjectsValue } from "context"
 import { firebase } from "../firebase"
 
 export const AddProject = ({ shouldShow = false }) => {
-  const userId = process.env.REACT_APP_USER_ID
+	const userId = process.env.REACT_APP_USER_ID
 
 	const [show, setShow] = useState(shouldShow)
 	const [projectName, setProjectName] = useState("")
@@ -33,7 +33,7 @@ export const AddProject = ({ shouldShow = false }) => {
 
 	const handleSubmitClick = () => addProject()
 
-  const handleCancelClick = () => setShow(false)
+	const handleCancelClick = () => setShow(false)
 
 	const handleAddClick = () => setShow(!show)
 
@@ -48,7 +48,7 @@ export const AddProject = ({ shouldShow = false }) => {
 						onChange={e => handleOnChange(e)}
 						type="text"
 						placeholder="Name your project"
-            aria-label="project name"
+						aria-label="project name"
 					/>
 					<button
 						className="add-project__submit"
@@ -56,18 +56,18 @@ export const AddProject = ({ shouldShow = false }) => {
 						type="button"
 						onClick={() => handleSubmitClick()}
 					>
-            Add
-          </button>
+						Add
+					</button>
 					<span
-            aria-label="cancel adding project"
+						aria-label="cancel adding project"
 						data-testid="hide-project-overlay"
 						className="add-project__cancel"
 						onClick={() => handleCancelClick()}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") handleCancelClick()
-            }}
-            tabIndex={0}
-            role="button"
+						onKeyDown={e => {
+							if (e.key === "Enter") handleCancelClick()
+						}}
+						tabIndex={0}
+						role="button"
 					>
 						Cancel
 					</span>
@@ -75,15 +75,15 @@ export const AddProject = ({ shouldShow = false }) => {
 			)}
 			<span className="add-project__plus">+</span>
 			<span
-        aria-label="add project"
+				aria-label="add project"
 				data-testid="add-project-action"
 				className="add-project__text"
 				onClick={() => handleAddClick()}
-        onKeyDown={(e) => {
-          if (e.key === "Enter") handleAddClick()
-        }}
-        role="button"
-        tabIndex={0}
+				onKeyDown={e => {
+					if (e.key === "Enter") handleAddClick()
+				}}
+				role="button"
+				tabIndex={0}
 			>
 				Add Project
 			</span>
